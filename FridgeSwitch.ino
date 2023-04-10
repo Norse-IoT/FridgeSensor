@@ -42,14 +42,14 @@ void loop() {
 	int fridgeStatus = digitalRead(REED_PIN); // Read the state of the switch
 
   if (fridgeStatus == LOW) {// If the pin reads low, the fridge is open
-  while(fridgeStatus == LOW){//while fridge is open
-      Serial.println("Fridge open");
-		  digitalWrite(LED_PIN, HIGH);	// Turn the LED on
-      playMelody();//play buzzer
-      Serial.println("begin timer");
+      Serial.println("beginning of timer");
       delay(5000);//wait 5 seconds
-      Serial.println("stop timer");
+      Serial.println("end of timer");
       fridgeStatus = digitalRead(REED_PIN);//check if fridge got closed
+      if(fridgeStatus == LOW){
+        Serial.println("Fridge open");
+		    digitalWrite(LED_PIN, HIGH);	// Turn the LED on
+        playMelody();//play buzzer
     }
   }
 
